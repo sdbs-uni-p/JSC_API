@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "7bb62cfb-01fa-4001-9d06-79c49192065e",
+		"name": "YetAnotherWitnessAPI",
+		"description": "# Yet another witness API\nA REST API for checking JSON Schema Containment and for generating JSON Schema Witnesses.\n\n## Documentation\nPlease see [Github repository JSC_API](https://github.com/sdbs-uni-p/JSC_API) for detailed documentation.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Compare schemas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//-------------------------------------",
+							"// Pre-request script to fill JSON body conveniently.",
+							"// Copy Postman variable {{body}} to tab \"Body\" (raw, JSON) to fill request body from this script. ",
+							"//-------------------------------------",
+							"",
+							"//-------------------------------------",
+							"// Define your input schema here",
+							"//-------------------------------------",
+							"const leftSchema = { const: 123 };",
+							"const rightSchema = { const: 124 };",
+							"",
+							"",
+							"// DO NOT MODIFY",
+							"// Defining body structure",
+							"const body = {",
+							"    leftSchema: JSON.stringify(leftSchema),",
+							"    rightSchema: JSON.stringify(rightSchema)",
+							"}",
+							"",
+							"// Set postgres variable to stringified body",
+							"pm.variables.set(\"body\", JSON.stringify(body))",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9,de;q=0.8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"leftSchema\": \"{\\n  \\\"const\\\": 123\\n}\",\n    \"rightSchema\": \"{\\n  \\\"const\\\": 124\\n}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/compareSchemas",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"compareSchemas"
+					]
+				},
+				"description": "# Endpoint: Compare schemas\nCompare two JSON Schemas regarding their relationship.\nYou may use the Pre-request script and the postman {{body}} variable to populate the request body.\n\n## Documentation\nPlease see [Github repository](https://github.com/sdbs-uni-p/JSC_API/blob/main/COMPARE_SCHEMAS.md) for detailed documentation of this endpoint."
+			},
+			"response": []
+		},
+		{
+			"name": "Generate (yet another) witness",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//-------------------------------------",
+							"// Pre-request script to fill JSON body conveniently.",
+							"// Copy Postman variable {{body}} to tab \"Body\" (raw, JSON) to fill request body from this script. ",
+							"//-------------------------------------",
+							"",
+							"// Array to hold previous witnesses",
+							"const previousWitnesses = [];",
+							"",
+							"//-------------------------------------",
+							"// Define your input schema here",
+							"//-------------------------------------",
+							"const input = { const: 123 };",
+							"",
+							"//-------------------------------------",
+							"// Define previous witnesses here",
+							"//-------------------------------------",
+							"// Assuming the first request returned \"123\" as the stringified witness, then there are two ways to procede.",
+							"// - Work with witness: parse the witness to get the \"real\" witness 123 (a number not a string) and do whatever needs to be done",
+							"// - Use it to send the next request: stringify the parsed witness again or just use the returned string from the first response",
+							"",
+							"// Just for demo purposes parse and stringify again.",
+							"const witness0 = JSON.stringify(JSON.parse(\"123\"));",
+							"",
+							"// Push all previous witnesses on to array",
+							"previousWitnesses.push(witness0);",
+							"",
+							"// DO NOT MODIFY",
+							"// Defining body structure",
+							"const body = {",
+							"    input: JSON.stringify(input),",
+							"    previousWitnesses: previousWitnesses",
+							"}",
+							"",
+							"// Set postgres variable to stringified body",
+							"pm.variables.set(\"body\", JSON.stringify(body))",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"description": "JSON is sent",
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"input\": \"{\\n  \\\"const\\\": 123\\n}\",\n    \"previousWitnesses\": [ ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/generateWitness",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"generateWitness"
+					]
+				},
+				"description": "# Endpoint: Generate (yet another) witness\nGenerate a witness for a given JSON Schema. If unprecedented witnesses should be generated already generated witnesses have to be provided as string within the previousWitnesses array.\nYou may use the Pre-request script and the postman {{body}} variable to populate the request body.\n\n## Documentation\nPlease see the [Github repository](https://github.com/sdbs-uni-p/JSC_API/blob/main/GENERATE_WITNESS.md) for detailed documentation."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://yetanotherwitness.ey.r.appspot.com"
+		}
+	]
+}
