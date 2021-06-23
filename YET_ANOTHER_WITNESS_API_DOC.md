@@ -1,5 +1,6 @@
 # YetAnotherWitness API documentation
 This is the API documentation for the YetAnotherWitness API. Please start here if you have not worked with the API before. You will find links to all relevant information on this page.
+
 ## Table of Contents
 - [YetAnotherWitness API documentation](#yetanotherwitness-api-documentation)
   - [Table of Contents](#table-of-contents)
@@ -28,6 +29,7 @@ This is the API documentation for the YetAnotherWitness API. Please start here i
   - [Postman collection](#postman-collection)
     - [Pre-request scripts](#pre-request-scripts)
     - [Variables](#variables)
+  - [Troubleshooting](#troubleshooting)
     - [Reading from data files](#reading-from-data-files)
 
 ## Authorization
@@ -40,12 +42,12 @@ All request are served from [https://yetanotherwitness.ey.r.appspot.com/](https:
 ### Compare Schemas
 Compare two JSON Schemas regarding their relationship.
 
-[See Details](./COMPARE_SCHEMAS.md).
+[See Details](./docs/COMPARE_SCHEMAS.md).
 
 ### Generate Witness
 Generate (yet another) witness from a given JSON schema.
 
-[See Details](./GENERATE_WITNESS.md).
+[See Details](./docs/GENERATE_WITNESS.md).
 
 ## Response
 All responses will return a **JSON** object. Therefore it's recommended that you set the Accept header appropriately.
@@ -84,11 +86,11 @@ In case of a failed request the response body will always follow this general st
 
 ```JSON
 {
-    "timestamp": "<stringTimestamp>",
-    "unixTimestamp": "<unixTimestamp>",
-    "httpStatus": "<httpStatusCode>",
-    "errCode": "<application_error_code>",
-    "msg": "<error message>"
+  "timestamp": "<stringTimestamp>",
+  "unixTimestamp": "<unixTimestamp>",
+  "httpStatus": "<httpStatusCode>",
+  "errCode": "<application_error_code>",
+  "msg": "<error message>"
 }
 ```
 #### Parameters
@@ -146,13 +148,14 @@ In case of a failed request the response body will always follow this general st
 
 ## Postman collection
 [Postman](https://www.postman.com/) is a platform for API Development, which - among other things - allows you to conveniently document and test an API. A Postman collection therefore is just a container for requests, documentation, scripts etc. related to an API which can be shared with others to give them access to everything defined within the collection. Thus, [importing a collection](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman) into Postman will give you an easy way to use, test and understand the API. 
-You can download a [Postman collection](./YetAnotherWitnessAPI.postman_collection.json) for the YetAnotherWitness API with sample requests, detailed documentation to each endpoint and already written pre-request scripts to easily populate the request body.
+You can download a [Postman collection](./docs/YetAnotherWitnessAPI.postman_collection.json) for the YetAnotherWitness API with sample requests, detailed documentation to each endpoint and already written pre-request scripts to easily populate the request body.
 
 ### Pre-request scripts
 Postman can execute JavaScript before making a request. These so called "pre-request scripts" are here used to populate a Postman local variable called "body", which can be accessed within the request body using this syntax:
 ```
 {{body}}
 ```
+This variable is used by default within the tab "Body" for each request.
 
 More details on how to set and access local variables can be found [here](https://learning.postman.com/docs/sending-requests/variables/#accessing-variables).
 
@@ -164,7 +167,12 @@ Currently the folowing variables are defined:
 | ---- | ------------------------------------------ | ------------------------------------------ |
 | host | https://yetanotherwitness.ey.r.appspot.com | https://yetanotherwitness.ey.r.appspot.com |
 
+You may change the variable values by clicking on a collection **...** -> **Edit** -> Tab **Variables**.
+
 More details on Postman variables can be found [here](https://learning.postman.com/docs/sending-requests/variables/).
+
+## Troubleshooting
+If you have issues when sending requests take a look into the Postman console for more detailed information or consult the [Postman documentation for troubleshooting](https://learning.postman.com/docs/sending-requests/troubleshooting-api-requests/).
 
 ### Reading from data files
 Postman allows to read values from JSON files, which may be helpful for working with the API. 
