@@ -119,8 +119,13 @@ In case of a failed request the response body will always follow this general st
 | ---------- | ------------------------------------------------------------------ |
 | 100        | Ooops something went wrong! An unexpected error occured.           |
 | 101        | Ooops something went wrong! An unexpected error occured.           |
-| 102        | Ooops something went wrong! An invalid witness has been generated. |
-| 103        | Ooops something went wrong! Did you enter a correct JSON Schema?   |
+| 102        | Ooops something went wrong! Invalid Witness. An invalid witness has been generated. |
+| 103        | Ooops something went wrong! Malformed JSON. Did you enter a correct JSON Schema?   |
+| 104 |    Ooops something went wrong! Witness generation error. An error occurred during witness generation. |
+| 105 | Ooops something went wrong! Invalid arguments. Please check provided arguments. |
+| 106 | Ooops something went wrong! No handler found for path *{request path}* and HTTP Method *{request method}*. |
+| 107 | Ooops something went wrong! Media type *{media type}* not supported. List of supported media types: *{list of supported media types}*. |
+| 108 | Ooops something went wrong! HTTP request method *{request method}* not supported. List of supported request methods: *{list of supported request methods}*. |
 
 #### Examples
 ##### Successful request
@@ -148,7 +153,7 @@ In case of a failed request the response body will always follow this general st
 
 ## Postman collection
 [Postman](https://www.postman.com/) is a platform for API Development, which - among other things - allows you to conveniently document and test an API. A Postman collection therefore is just a container for requests, documentation, scripts etc. related to an API which can be shared with others to give them access to everything defined within the collection. Thus, [importing a collection](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman) into Postman will give you an easy way to use, test and understand the API. 
-You can download a [Postman collection](./docs/YetAnotherWitnessAPI.postman_collection.json) for the YetAnotherWitness API with sample requests, detailed documentation to each endpoint and already written pre-request scripts to easily populate the request body.
+You can download a [Postman collection](./YetAnotherWitnessAPI.postman_collection.json) for the YetAnotherWitness API with sample requests, detailed documentation to each endpoint and already written pre-request scripts to easily populate the request body.
 
 ### Pre-request scripts
 Postman can execute JavaScript before making a request. These so called "pre-request scripts" are here used to populate a Postman local variable called "body", which can be accessed within the request body using this syntax:
