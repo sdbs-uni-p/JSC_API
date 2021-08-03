@@ -170,7 +170,7 @@ Pre-request scripts can be found within the tab "Pre-request Script" within each
 A pre-request script in this Postman collection will always comprise 4 sections:
 1. Description of its purpose
 2. **Definition of data/ schemas/ input**
-3. Definition of body structure (according to the documentation for each enpoint)
+3. Definition of body structure (according to the documentation for each endpoint)
 4. Setting the "body" variable
 You usually only need to be concerned with the 2nd section i. e. the definition of the schema(s) or input(s) you would like to use. The variables you are supposed to change will be marked with "Define your ..." as a comment above them. 
 For instance, assume you would like to compare the following two schemas:
