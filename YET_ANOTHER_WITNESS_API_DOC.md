@@ -43,12 +43,12 @@ All request are served from [https://yetanotherwitness.ey.r.appspot.com/](https:
 ### Compare Schemas
 Compare two JSON Schemas regarding their relationship.
 
-[See Details](./docs/COMPARE_SCHEMAS.md).
+[See Details](./COMPARE_SCHEMAS.md).
 
 ### Generate Witness
 Generate (yet another) witness from a given JSON schema.
 
-[See Details](./docs/GENERATE_WITNESS.md).
+[See Details](./GENERATE_WITNESS.md).
 
 ## Response
 All responses will return a **JSON** object. Therefore it's recommended that you set the Accept header appropriately.
